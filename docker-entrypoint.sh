@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-set -eu
+set -e
 
 KEYFILE_PATH=/tmp/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1).json
 
@@ -12,3 +12,5 @@ gcloud container clusters get-credentials $GCP_CLUSTER --project $GCP_PROJECT_ID
 kubectl config set-context --current --namespace=$GCP_NAMESPACE
 
 rm $KEYFILE_PATH
+
+exec "$@"
