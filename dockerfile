@@ -5,7 +5,7 @@ RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 >
  && ./get_helm.sh \
  && rm get_helm.sh
 
-COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
+COPY configure /bin/configure
+RUN chmod +x /bin/configure
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT []
