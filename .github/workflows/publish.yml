@@ -15,6 +15,8 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Build docker image
-      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:${GITHUB_REF##*/} .
+      run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:${GITHUB_REF##*/} --tag ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:latest .
     - name: Push docker image
-      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:${GITHUB_REF##*/}
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:${GITHUB_REF##*/}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/k8s-gcloud:latest
